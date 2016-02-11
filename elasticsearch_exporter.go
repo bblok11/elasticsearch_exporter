@@ -62,6 +62,10 @@ var (
 		"indices_merges_total_time_ms_total":    "Total time spent merging in milliseconds",
 		"indices_refresh_total":                 "Total refreshes",
 		"indices_refresh_total_time_ms_total":   "Total time spent refreshing",
+		"indices_search_query_total":            "Total search queries",
+		"indices_search_query_time_in_millis":   "Total search queries time",
+		"indices_search_fetch_total":            "Total search fetches",
+        "indices_search_fetch_time_in_millis":   "Total search fetches time",
 	}
 	counterVecMetrics = map[string]*VecInfo{
 		"jvm_gc_collection_seconds_count": &VecInfo{
@@ -359,6 +363,12 @@ func (e *Exporter) Collect(ch chan<- prometheus.Metric) {
 
 		e.counters["indices_refresh_total_time_ms_total"].WithLabelValues(allStats.ClusterName, stats.Host).Set(float64(stats.Indices.Refresh.TotalTime))
 		e.counters["indices_refresh_total"].WithLabelValues(allStats.ClusterName, stats.Host).Set(float64(stats.Indices.Refresh.Total))
+
+		e.counters["indices_search_query_total"].WithLabelValues(allStats.ClusterName, stats.Host).Set(float64(stats.Indices.Search.QueryTotal))
+		e.counters["indices_search_query_time_in_millis"].WithLabelValues(allStats.ClusterName, stats.Host).Set(float64(stats.Indices.Search.QueryTimeInMillis))
+
+		e.counters["indices_search_fetch_total"].WithLabelValues(allStats.ClusterName, stats.Host).Set(float64(stats.Indices.Search.FetchTotal))
+		e.counters["indices_search_fetch_time_in_millis"].WithLabelValues(allStats.ClusterName, stats.Host).Set(float64(stats.Indices.Search.FetchTimeInMillis))
 
 		// Transport Stats
 		e.counters["transport_rx_packets_total"].WithLabelValues(allStats.ClusterName, stats.Host).Set(float64(stats.Transport.RxCount))
