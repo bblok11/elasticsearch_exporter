@@ -110,19 +110,11 @@ type NodeStatsIndicesResponse struct {
 	Flush        NodeStatsIndicesFlushResponse
 	Segments     NodeStatsIndicesSegmentsResponse
 	Refresh      NodeStatsIndicesRefreshResponse
-	Search       NodeStatsIndicesSearchResponse `json:"search"`
 }
 
 type NodeStatsIndicesDocsResponse struct {
 	Count   int64 `json:"count"`
 	Deleted int64 `json:"deleted"`
-}
-
-type NodeStatsIndicesSearchResponse struct {
-	QueryTotal  int64 `json:"query_total"`
-	QueryTimeInMillis  int64 `json:"query_time_in_millis"`
-	FetchTotal  int64 `json:"fetch_total"`
-    FetchTimeInMillis  int64 `json:"fetch_time_in_millis"`
 }
 
 type NodeStatsIndicesRefreshResponse struct {
