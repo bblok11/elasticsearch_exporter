@@ -365,10 +365,10 @@ func (e *Exporter) Collect(ch chan<- prometheus.Metric) {
 		e.counters["indices_refresh_total"].WithLabelValues(allStats.ClusterName, stats.Host).Set(float64(stats.Indices.Refresh.Total))
 
 		e.counters["indices_search_query_total"].WithLabelValues(allStats.ClusterName, stats.Host).Set(float64(stats.Indices.Search.QueryTotal))
-		e.counters["indices_search_query_time_in_millis"].WithLabelValues(allStats.ClusterName, stats.Host).Set(float64(stats.Indices.Search.QueryTimeInMillis))
+		e.counters["indices_search_query_time_in_millis"].WithLabelValues(allStats.ClusterName, stats.Host).Set(float64(stats.Indices.Search.QueryTime))
 
 		e.counters["indices_search_fetch_total"].WithLabelValues(allStats.ClusterName, stats.Host).Set(float64(stats.Indices.Search.FetchTotal))
-		e.counters["indices_search_fetch_time_in_millis"].WithLabelValues(allStats.ClusterName, stats.Host).Set(float64(stats.Indices.Search.FetchTimeInMillis))
+		e.counters["indices_search_fetch_time_in_millis"].WithLabelValues(allStats.ClusterName, stats.Host).Set(float64(stats.Indices.Search.FetchTime))
 
 		// Transport Stats
 		e.counters["transport_rx_packets_total"].WithLabelValues(allStats.ClusterName, stats.Host).Set(float64(stats.Transport.RxCount))
